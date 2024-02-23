@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>56</x>
+      <y>0</y>
+      <w>296</w>
+      <h>616</h>
+    </coordinates>
+    <panel_attributes>::Board
+--
+-serialVersionUID = 1L: long
+-DELAY = 10: int
+-player: Player
+-enemyPlane: EnemyPlayer
+-w = 1024: int
+-h = 768: int
+-counter = 0: int
+-count = 0: int
++enemyPlanes = new DLL(): DLL
+-enemyPlayerSpawn = 275: int
+-enemyPlayerSpeed = 2: int
+-playerSpeed = 10: int
+~condition = true: boolean
+-fontSize = 18: int
+-roundScore: int
+-totalScore: int
+-level: int
+-removedEnemyCondition = 0: int
+-removedPlayerBulletCondition = 0: int
+-removedEnemyPlayer: int
+-removedPlayerBullet: int
+-r1: Rectangle
+-r2: Rectangle
+-timer: Timer
+-enemy: Vehicle
+-bullet: Vehicle
+--
++Board(): ctor
+-initBoard(): //Initializes all the game objects&#13;
+void
++paintComponent(//Draws all the components on screen&#13;
+Graphics g): //Draws all the components on screen&#13;
+void
++actionPerformed(ActionEvent e): void
+-animate(): void
+-step(): void
+-enemyPlayerSpawn(): void
++bomberSetIcon(): void
++checkCollisions(): void
++setLevel(): void
++levelUp(): void
+-writeText(Graphics2D g2d): void
+-removeOutOfBound(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>112</y>
+      <w>248</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>/Objects::Vehicle/
+--
+#image: Image
+#x, y, w, h, dx, dy: int
+#path: String
+#imageIcon: ImageIcon
+-pictureChange: int
+-noOfImg = 3: int
++boardWidth: int
++boardHeight: int
+--
++Vehicle(String path, int x, int y): ctor
++Vehicle(String path, MyPoint p): ctor
++setBoardWidth(int boardWidth): void
++setBoardHeight(int boardHeight): void
++setImage(String path): void
++setImage(String path, int ID): void
++setImage(String path, boolean Bomber): void
++paintComponent(Graphics2D g): void
++makeBackground(Graphics2D g): void
++moveTo(int x, int y): void
++move(): void
++Fire(): void
++getBounds(): Rectangle
++isVisible(): boolean
++setVisible(boolean visible): void
++dodgeLeft(): void
++dodgeRight(): void
++isBomber(int ID): boolean
++isBullet(): boolean
++getX(): int
++getY(): int
++getWidth(): int
++getHeight(): int
++getImage(): Image
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>304</y>
+      <w>248</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>Objects::Player
+--
++point: MyPoint
++bullet: Bullet
++bullets = new DLL(): DLL
++speed = 2: int
+-bulletSpeed = 4: int
+--
++Player(String path, int x, int y): ctor
++Player(String path, int x, int y, int speed): ctor
++Player(String path, MyPoint p): ctor
++isBomber(int ID): boolean
++isBullet(): boolean
++getSpeed(): int
++setSpeed(int speed): void
++isVisible(): boolean
++setVisible(boolean visible): void
++getBounds(): Rectangle
++move(): void
++dodgeLeft(): void
++dodgeRight(): void
++keyPressed(KeyEvent e): void
++Fire(): void
++keyReleased(KeyEvent e): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>8</y>
+      <w>280</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>Objects::EnemyPlayer
+--
++point: MyPoint
++bullet: Bullet
+-speed: Integer
+-visible: boolean
+--
++EnemyPlayer(String path, int x, int y): ctor
++EnemyPlayer(String path, int x, int y, int speed): ctor
++EnemyPlayer(String path, MyPoint p): ctor
++setSpeed(Integer speed): void
++setVisible(boolean visible): void
++getBounds(): Rectangle
++isVisible(): boolean
++move(): void
++dodgeRight(): void
++dodgeLeft(): void
++Fire(): void
++getSpeed(): Integer
++isBomber(int ID): boolean
++isBullet(): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>624</y>
+      <w>272</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>Objects::Bullet
+--
+-speed: Integer
+-visible: boolean
+--
++Bullet(String path, int x, int y): ctor
++Bullet(String path, int x, int y, int bulletSpeed): ctor
++Bullet(String path, MyPoint p): ctor
++Bullet(String path, MyPoint p, int speed): ctor
++isVisible(): boolean
++setVisible(boolean visible): void
++isBomber(int ID): boolean
++isBullet(): boolean
++getBounds(): Rectangle
++dodgeLeft(): void
++dodgeRight(): void
++move(): void
++Fire(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>616</y>
+      <w>208</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>Objects::DLL
+--
++head: Node
++tail: Node
+-counter = 0: int
+-removeFirstBulletOnCollision: boolean
+--
++DLL(): ctor
++add(Vehicle val): void
++show(Graphics2D g): void
++move(): void
++length(): int
++nodeAtPosition(int i): Node
++removeAt(int n): void
++removeLastIn(): void
++removeFirstIn(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>752</x>
+      <y>664</y>
+      <w>128</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Objects::Node
+--
++data: Vehicle
++ID: int
++next: Node
++prev: Node
+--
+~Node(Vehicle n): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>968</x>
+      <y>560</y>
+      <w>144</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Objects::MyPoint
+--
++x: int
++y: int
+--
+~MyPoint(int x, int y): ctor
+~MyPoint(MyPoint p): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>664</x>
+      <y>96</y>
+      <w>144</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>::Application
+--
+--
++Application(): ctor
+-initUI(): void
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>344</x>
+      <y>40</y>
+      <w>512</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;620.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>344</x>
+      <y>64</y>
+      <w>400</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>480.0;40.0;480.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>344</x>
+      <y>600</y>
+      <w>352</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;420.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>264</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0;170.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>584</y>
+      <w>72</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>208</y>
+      <w>232</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>408</y>
+      <w>136</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>150.0;190.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1032</x>
+      <y>288</y>
+      <w>24</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;340.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>496</y>
+      <w>360</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>430.0;190.0;50.0;190.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>696</y>
+      <w>160</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>424</y>
+      <w>144</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;330.0;40.0;330.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
