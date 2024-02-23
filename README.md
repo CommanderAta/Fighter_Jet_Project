@@ -66,7 +66,7 @@ class F16 extends FighterJet {
         System.out.println("F16 is flying at speed: " + maxSpeed);
     }
 }
-
+```
 
 ## Contributing
 We welcome contributions from the community! If you would like to contribute to the Fighter Jet Project, please follow these steps:
